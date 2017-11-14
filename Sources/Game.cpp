@@ -2,8 +2,8 @@
 
 
 // TODO: 砲台の位置を画面左に、ターゲットの位置を画面右に移動させる。(A) HW16A056 岸本 朋哉
-// TODO: 雲の位置を左から右に動かす。見えなくなったら左端に戻す。(B)
-// TODO: 砲台を青い壁に沿って上下に動かす。(C)
+// TODO: 雲の位置を左から右に動かす。見えなくなったら左端に戻す。(B) HW16A058 北田大河
+// TODO: 砲台を青い壁に沿って上下に動かす。(C) HW16A058 北田大河
 // TODO: 弾のスピードを速くし、弾が画面右端を通り越したら再度発射可能にする。(D)
 // TODO: スコアのサイズを大きくする。(E)
 // TODO: スコアを100点ずつ加算するようにし、5桁の表示に変える。(F)
@@ -54,6 +54,13 @@ void Update()
 
     // 雲の描画
     DrawImage("cloud1.png", cloudPos);
+    
+    cloudPos.x += 1;
+    
+    if(cloudPos.x >= 301){
+        cloudPos.x -= 830;
+    }
+
 
     // 弾の描画
     if (bulletPos.x > -999) {
@@ -63,6 +70,13 @@ void Update()
     // 砲台の描画
     FillRect(Rect(cannonPos.x-10, -140, 20, 100), Color::blue);
     DrawImage("cannon.png", cannonPos);
+    cannonPos.y += 1 * i;
+    if (cannonPos.y >= -60 ) {
+        i *= -1;
+    }
+    if(cannonPos.y <= -150 ) {
+        i *= -1;
+    }
 
     // ターゲットの描画
     FillRect(targetRect, Color::red);
